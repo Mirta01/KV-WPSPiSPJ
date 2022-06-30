@@ -1,0 +1,61 @@
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: autokuca
+-- ------------------------------------------------------
+-- Server version	8.0.29
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `narudba`
+--
+
+use autokuca;
+DELETE FROM vozilo WHERE vozilo.sifra > -1;
+DELETE FROM salon WHERE salon.id > -1;
+DELETE FROM narudba WHERE narudba.sifravozilo > -1;
+
+LOCK TABLES `narudba` WRITE;
+/*!40000 ALTER TABLE `narudba` DISABLE KEYS */;
+/*!40000 ALTER TABLE `narudba` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `salon`
+--
+
+LOCK TABLES `salon` WRITE;
+/*!40000 ALTER TABLE `salon` DISABLE KEYS */;
+INSERT INTO `salon` VALUES (1,'AUTO CENTAR ĐUKA'),(2,'PSC OSIJEK d.o.o.'),(3,'AUTO SMILE Osijek'),(4,'Auto Moslavac'),(5,'Damir Moto Centar ZAGREB'),(6,'TOP MOTO d.o.o.'),(7,'MOTO SILVER'),(8,'INTEGRA-DUNDOVIĆ Ltd.');
+/*!40000 ALTER TABLE `salon` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `vozilo`
+--
+
+LOCK TABLES `vozilo` WRITE;
+/*!40000 ALTER TABLE `vozilo` DISABLE KEYS */;
+INSERT INTO `vozilo` VALUES (1,'automobil','2,0 TDI','A4 Avant','Audi','WAUZZZF48HA009771',2016,110,4),(2,'automobil','320d','serija 3 Touring','BMW','FGLKJ7826HJ5254D',2014,135,1),(3,'automobil','4,0','Cherokee','Jeep','PRR11245H85LRT3',1995,141,3),(4,'motocikl','Cestovni motocikli','ST 1300 Pan European','Honda','MOTO85236FGH167S',2003,93,6),(5,'motocikl','Cestovni motocikli','1090 adventure S','KTM','SLP8521470FDS395',2017,92,7);
+/*!40000 ALTER TABLE `vozilo` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-06-08  0:24:06

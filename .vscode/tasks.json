@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Database",
+            "type": "shell",
+            "command": "mysqld --console --basedir=${workspaceFolder}/db --datadir=data",
+            "problemMatcher": []
+        },
+        {
+            "label": "UI",
+            "type": "shell",
+            "command": "npm run start-legacy",
+            "options": {
+                "cwd": "${workspaceFolder}/ui"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Server",
+            "type": "shell",
+            "command": "php -S localhost:7000 -c php.ini",
+            "options": {
+                "cwd": "${workspaceFolder}/src"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Start",
+            "dependsOn": ["Database", "UI", "Server"],
+            "group": "build"
+        }
+    ]
+}
