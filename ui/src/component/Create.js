@@ -14,10 +14,15 @@ function Create()
     const [model, setModel] = useState('');
     const [proizvodac, setProizvodac] = useState('');
     const [oznaka, setOznaka] = useState('');
+    const [mjenjac, setMjenjac] = useState('');
+    const [motor, setMotor] = useState('');
     const [godina, setGodina] = useState('');
     const [snaga, setSnaga] = useState('');
     const [salon, setSalon] = useState('');
+    const [cijena, setCijena] = useState('');
     const [saloni, setSaloni] = useState([]);
+
+    var thisYear = new Date().getFullYear();
 
     useEffect(() => {
         axios.get(baseURL + "salon.php").then((response) => {
@@ -49,9 +54,12 @@ function Create()
                                 model: model,
                                 proizvodac: proizvodac,
                                 oznaka: oznaka.toUpperCase(),
+                                mjenjac: mjenjac,
+                                motor: motor,
                                 godina: godina,
                                 snaga: snaga,
-                                salon: salon
+                                salon: salon,
+                                cijena: cijena
                             },
                     headers: {"Content-Type": "multipart/form-data"},
                 }).then(function (response) {
@@ -117,10 +125,43 @@ function Create()
                     <Form.Label>Oznaka</Form.Label>
                     <Form.Control type="text" minLength={17} maxLength={17} required/>
                 </Form.Group>
+
+                <Form.Group key={`inline-radio`} className="mb-3">
+                    <Form.Label>Mjenjač</Form.Label>
+                    <div className='mjenjac-style'>
+                        <Form.Check
+                            inline
+                            label="Ručni"
+                            name="group1"
+                            type='radio'
+                            id={`inline-radio-1`}
+                            onChange={e => setMjenjac("Ručni")}
+                        />
+                        <Form.Check
+                            inline
+                            label="Automatski"
+                            name="group1"
+                            type='radio'
+                            id={`inline-radio-2`}
+                            onChange={e => setMjenjac("Automatski")}
+                        />
+                    </div>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Motor</Form.Label>
+                    <Form.Select onChange={e => setMotor(e.target.value)} required>
+                        <option selected>Benzin</option>
+                        <option>Diesel</option>
+                        <option>Hibrid</option>
+                        <option>Plin</option>
+                        <option>Električni</option>
+                    </Form.Select>
+                </Form.Group>
                 
                 <Form.Group className="mb-3" onInput={e => setGodina(e.target.value)}>
                     <Form.Label>Godina</Form.Label>
-                    <Form.Control type="number" required/>
+                    <Form.Control min={1950} max={thisYear} type="number" required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" onInput={e => setSnaga(e.target.value)}>
@@ -137,6 +178,11 @@ function Create()
                             })
                         }
                     </Form.Select>
+                </Form.Group>
+
+                <Form.Group className="mb-3" onInput={e => setCijena(e.target.value)}>
+                    <Form.Label>Cijena</Form.Label>
+                    <Form.Control min={0} max={100000} type="number" required/>
                 </Form.Group>
 
                 <Button

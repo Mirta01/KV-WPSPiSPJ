@@ -18,10 +18,17 @@ function Alter()
     const [model, setModel] = useState('');
     const [proizvodac, setProizvodac] = useState('');
     const [oznaka, setOznaka] = useState('');
+    const [mjenjac, setMjenjac] = useState('');
+    const [motor, setMotor] = useState('');
     const [godina, setGodina] = useState('');
     const [snaga, setSnaga] = useState('');
     const [salon, setSalon] = useState('');
+    const [cijena, setCijena] = useState('');
     const [saloni, setSaloni] = useState([]);
+
+    const [rucni, setRucni] = useState(false);
+
+    var thisYear = new Date().getFullYear();
 
     useEffect(() => {
         axios.get(baseURL + "salon.php").then((response) => {
@@ -37,9 +44,14 @@ function Alter()
             setModel(response.data[0].model)
             setProizvodac(response.data[0].proizvodac)
             setOznaka(response.data[0].oznaka)
+            setMjenjac(response.data[0].mjenjac)
+            setMotor(response.data[0].motor)
             setGodina(response.data[0].godina)
             setSnaga(response.data[0].snaga)
             setSalon(response.data[0].salon)
+            setCijena(response.data[0].cijena)
+
+            setRucni(response.data[0].mjenjac === "Ručni")
         });
     },[]);
 
@@ -64,9 +76,12 @@ function Alter()
                                     model: model,
                                     proizvodac: proizvodac,
                                     oznaka: oznaka.toUpperCase(),
+                                    mjenjac: mjenjac,
+                                    motor: motor,
                                     godina: godina,
                                     snaga: snaga,
-                                    salon: salon
+                                    salon: salon,
+                                    cijena: cijena
                                 },
                                 headers: {"Content-Type": "multipart/form-data"},
                             }).then(function (response) {
@@ -77,7 +92,7 @@ function Alter()
                         }}>
                 <Form.Group className="mb-3">
                     <Form.Label>Vrsta vozila</Form.Label>
-                    <Form.Select aria-selected={vrsta} onChange={e => setVrsta(e.target.value)} value={vrsta} required >
+                    <Form.Select onChange={e => setVrsta(e.target.value)} aria-selected={vrsta} value={vrsta} required>
                     <option>Automobil</option>
                     <option>Motocikl</option>
                     </Form.Select>
@@ -131,10 +146,47 @@ function Alter()
                     <Form.Label>Oznaka</Form.Label>
                     <Form.Control type="text" defaultValue={oznaka} minLength={17} maxLength={17} required/>
                 </Form.Group>
+
+                <Form.Group key={`inline-radio`} className="mb-3">
+                    <Form.Label>Mjenjač</Form.Label>
+
+                    <div className='mjenjac-style'>
+
+                    <Form.Check
+                            checked={ mjenjac === "Ručni" }
+                            inline
+                            label="Ručni"
+                            name="group1"
+                            type='radio'
+                            id={`inline-radio-1`}
+                            onChange={e => setMjenjac("Ručni")}
+                        />
+                        <Form.Check
+                            checked={ mjenjac === "Automatski" }
+                            inline
+                            label="Automatski"
+                            name="group1"
+                            type='radio'
+                            id={`inline-radio-2`}
+                            onChange={e => setMjenjac("Automatski")}
+                        />
+                    </div>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Motor</Form.Label>
+                    <Form.Select onChange={e => setMotor(e.target.value)} aria-selected={motor} value={motor} required>
+                        <option>Benzin</option>
+                        <option>Diesel</option>
+                        <option>Hibrid</option>
+                        <option>Plin</option>
+                        <option>Električni</option>
+                    </Form.Select>
+                </Form.Group>
                 
                 <Form.Group className="mb-3" onInput={e => setGodina(e.target.value)}>
                     <Form.Label>Godina</Form.Label>
-                    <Form.Control type="number" defaultValue={godina} required/>
+                    <Form.Control type="number" min={1950} max={thisYear} defaultValue={godina} required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" onInput={e => setSnaga(e.target.value)}>
@@ -151,6 +203,11 @@ function Alter()
                             })
                         }
                     </Form.Select>
+                </Form.Group>
+
+                <Form.Group className="mb-3" onInput={e => setCijena(e.target.value)}>
+                    <Form.Label>Cijena</Form.Label>
+                    <Form.Control type="number" min={0} max={100000} defaultValue={cijena} required/>
                 </Form.Group>
 
                 <Button variant="outline-primary" type="submit">Spremi</Button>

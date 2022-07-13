@@ -20,11 +20,14 @@ class Vozilo{
     public $model = "";
     public $proizvodac = "";
     public $oznaka = "";
+    public $mjenjac = "";
+    public $motor = "";
     public $godina = 0;
     public $snaga = 0;
     public $salon = 0;
+    public $cijena = 0;
 
-    public function __construct($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $godina, $snaga, $salon) 
+    public function __construct($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $mjenjac, $motor, $godina, $snaga, $salon, $cijena) 
     {
         $this->sifra = $sifra;
         $this->vrsta = $vrsta;
@@ -32,10 +35,15 @@ class Vozilo{
         $this->model = $model;
         $this->proizvodac = $proizvodac;
         $this->oznaka = $oznaka;
+        $this->mjenjac = $mjenjac;
+        $this->motor = $motor;
         $this->godina = $godina;
         $this->snaga = $snaga;
         $this->salon = $salon;
+        $this->cijena = $cijena;
     }
+
+
 }
 
 class Salon{

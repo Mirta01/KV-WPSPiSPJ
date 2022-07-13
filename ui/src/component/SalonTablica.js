@@ -60,20 +60,21 @@ function SalonTablica()
     )
 
     function DeleteSalon(id, ime) {
-
-
-        axios.post(baseURL + "deleteSalon.php", {
-            id: id
-        },
-        {
-            headers : {
-                "Content-Type": "multipart/form-data"
-        }})
-        .then((res) => {
-            window.location.reload(false)
-        }).catch((res) => {
-            alert(`${ime} jos uvijek posjeduje vozila.\nMolimo vas izbriste ih ili prebacite u drugi salon i pokušajte ponovo.`)
-        })
+        var answer = window.confirm(`Želite li obrisati salon ${ime}?`);
+        if (answer) {
+            axios.post(baseURL + "deleteSalon.php", {
+                id: id
+            },
+            {
+                headers : {
+                    "Content-Type": "multipart/form-data"
+            }})
+            .then((res) => {
+                window.location.reload(false)
+            }).catch((res) => {
+                alert(`${ime} jos uvijek posjeduje vozila.\nMolimo vas izbriste ih ili prebacite u drugi salon i pokušajte ponovo.`)
+            })
+        }
     }
 }
 

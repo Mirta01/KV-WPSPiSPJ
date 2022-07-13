@@ -16,6 +16,22 @@ nav{
     margin-right: 1rem;
 }
 
+.selectSortBorder{
+    border: 1px solid #ccc;
+    width: 8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.radio-btn-default{
+    display: flex;
+    height: 1.5rem;
+    width: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
 .addBtn{
     border: 1px solid #ccc !important;
     margin-right: 1rem;
@@ -36,4 +52,49 @@ nav{
     border-radius: 1rem;
     border: 1px solid rgb(0, 0, 0);
     background-color: rgb(241, 248, 255);
+}
+
+.inputs-modal{
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+}
+
+.motor-input{
+    display: flex;
+    flex-direction: row;
+    margin-left: 0;
+    margin-bottom: 0 !important;
+}
+
+.slider-group{
+    display: flex;
+    flex-direction: row;
+}
+
+.slider-group-input{
+    width: 15rem !important
+}
+
+.motor-input-radio{
+    margin-right: 1rem;
+}
+
+.op{
+    display: flex;
+}
+
+.dropdown-scroll{
+    overflow-y: scroll;
+    height: 10rem;
+}
+
+.sorting{
+    flex-direction: column;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.sorting-group{
+    display: flex;
+    flex-direction: row;
 }

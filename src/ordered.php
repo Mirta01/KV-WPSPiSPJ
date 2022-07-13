@@ -16,8 +16,11 @@ while($oRow=$oRecord->fetch(PDO::FETCH_BOTH)){
     $godina = $oRow['godina'];
     $snaga = $oRow['snaga'];
     $salon = $oRow['ime'];
+    $mjenjac = $oRow['mjenjac'];
+    $motor = $oRow['motor'];
+    $cijena = $oRow['cijena'];
 
-    $oVozilo = new Vozilo($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $godina, $snaga, $salon);
+    $oVozilo = new Vozilo($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $mjenjac, $motor, $godina, $snaga, $salon, $cijena);
     array_push($aVozila, $oVozilo);
 }
 

@@ -18,8 +18,11 @@ if (isset($_GET["sifra"]))
     $godina = $oRow['godina'];
     $snaga = $oRow['snaga'];
     $salon = $oRow['salon'];
-    
-    $oVozilo = new Vozilo($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $godina, $snaga, $salon);
+    $mjenjac = $oRow['mjenjac'];
+    $motor = $oRow['motor'];
+    $cijena = $oRow['cijena'];
+
+    $oVozilo = new Vozilo($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $mjenjac, $motor, $godina, $snaga, $salon, $cijena);
     array_push($aVozila, $oVozilo);
 }
 else
@@ -38,8 +41,11 @@ else
         $godina = $oRow['godina'];
         $snaga = $oRow['snaga'];
         $salon = $oRow['ime'];
-    
-        $oVozilo = new Vozilo($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $godina, $snaga, $salon);
+        $mjenjac = $oRow['mjenjac'];
+        $motor = $oRow['motor'];
+        $cijena = $oRow['cijena'];
+
+        $oVozilo = new Vozilo($sifra, $vrsta, $tip, $model, $proizvodac, $oznaka, $mjenjac, $motor, $godina, $snaga, $salon, $cijena);
         array_push($aVozila, $oVozilo);
     }
 }
